@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:02:04 by andefern          #+#    #+#             */
-/*   Updated: 2024/06/20 16:23:55 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:17:02 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,30 @@
 void	*routine(void *args)
 {
 	(void)args;
-	printf("EMPEZAMOH\n");
-	printf("VAMOH A COMEH\n");
+	printf("Comienza\n");
+	printf("Come\n");
 	sleep(5);
-	printf("VAMOH A DOLMIL\n");
+	printf("Duerme\n");
 	sleep(3);
-	printf("ME LO PIENSO\n");
+	printf("Esperando\n");
 	printf("Final del hilo\n");
 	return (NULL);
+/* 
+	pthread_t	thread_check;
+	t_xylo		*xylo;
+
+	xylo = args;
+	xylo->plays = 0;
+	xylo->last_play = 0;
+	if (xylo->num % 2 == 0)
+		overclocked_usleep(xylo->stats->ttp - 20);
+	pthread_create(&thread_check, NULL, adagio_check, xylo);
+	while(xylo->stats->vibing != 0)
+	{
+		if(xylo->stats->played < xylo->stats-num)
+			
+	}
+	*/
 }
 
 int	sewing_kit(t_stats *data, t_xylo **xylo)

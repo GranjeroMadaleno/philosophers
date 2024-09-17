@@ -13,6 +13,9 @@ INCLUDE = xylophoners.h
 SRCS =	srcs/main.c			\
 		srcs/utils.c		\
 		srcs/initializer.c	\
+		srcs/time.c			\
+		srcs/adagio.c		\
+		srcs/eraser.c		\
 
 #OBJECTS (*.o)
 OBJS = $(SRCS:.c=.o)

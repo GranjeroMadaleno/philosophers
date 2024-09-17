@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:48:04 by andefern          #+#    #+#             */
-/*   Updated: 2024/06/20 16:37:18 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:47:53 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_xylo	*ft_lstnew(int num)
 	new->num = num;
 	new->mallet = 0;
 	new->plays = 0;
-	new->broken = 0;
+	new->broke = 0;
 	new->last_play = 0;
 	new->next = NULL;
 	return (new);
