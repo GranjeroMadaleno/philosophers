@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:18:06 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/16 11:21:38 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:19:32 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ void	ft_studying(t_xylo *xylo)
 
 void	ft_breaktime(t_xylo *xylo)
 {
-	print_status(xylo, "Is taking a break...\n");
+	print_status(xylo, "is taking a break...\n");
 }

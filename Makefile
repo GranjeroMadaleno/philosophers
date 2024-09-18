@@ -10,12 +10,14 @@ RM = /bin/rm -rf
 INCLUDE = xylophoners.h
 
 # FILES TO COMPILE
-SRCS =	srcs/main.c			\
-		srcs/utils.c		\
-		srcs/initializer.c	\
-		srcs/time.c			\
+SRCS =	srcs/actions.c		\
 		srcs/adagio.c		\
 		srcs/eraser.c		\
+		srcs/initializer.c	\
+		srcs/main.c			\
+		srcs/time.c			\
+		srcs/utils.c
+
 
 #OBJECTS (*.o)
 OBJS = $(SRCS:.c=.o)

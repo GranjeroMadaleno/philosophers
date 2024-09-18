@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:52:06 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/16 11:31:31 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:14:21 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,30 @@
 //must_play es opcional
 typedef struct s_stats
 {
-	int				num;
-	int				ttb;
-	int				ttp;
-	int				tts;
-	int				must_play;
-	int				played;
-	int				broken;
-	long			tempo;
+	int				num;//número de xilófonos
+	int				ttb;//time to break /time to
+	int				ttp;//time to play /time to eat
+	int				tts;//time to study /time to sleep
+	int				must_play;//opcional /must eat
+	int				played;//ate
+	int				broken;//died
+	long			tempo;//time
 	unsigned short	vibing;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	*mallet;
-}				t_stats;
+}					t_stats;
 
 //mallet == fork
 //sin 2 mallet no se puede tocar el xilófono
 typedef struct s_xylo
 {
-	pthread_t		thread;
-	int				num;
-	int				mallet;
-	int				plays;
-	int				broke;
+	pthread_t		thread;//hilo
+	int				num;//id del xilófono
+	int				mallet;//forks
+	int				plays;//veces que ha comido
+	int				broke;//die
 	int				left;
-	long			last_play;
+	long			last_play;//cuando comió por última vez
 	t_stats			*stats;
 	struct s_xylo	*next;
 }					t_xylo;
@@ -80,7 +80,7 @@ void	print_matic(t_stats *data, t_xylo *xylo);
 long	updated_time(void);
 void	overclocked_usleep(unsigned int ms);
 
-	// ADAGIO (Adagio es un término musical que indica un tempo lento o pausado, yo lo utilizo como si fuese la muerte del filósofo)
+	// ADAGIO (yo lo utilizo como si fuese la muerte del filósofo)
 void	adagio(t_xylo *xylo);
 void	*adagio_check(void *args);
 
