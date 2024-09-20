@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:32:28 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/12 10:34:50 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:40:11 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void	adagio(t_xylo *xylo)
 			pthread_mutex_lock(&xylo->stats->mutex);
 			printf("Ms: %ld Xylo [%d] Broken\n", updated_time() - xylo->stats->tempo,
 				xylo->num);
-			pthread_mutex_unlock(&xylo->stats->mallet[xylo->left]);
-			pthread_mutex_unlock(&xylo->stats->mallet[xylo->next->left]);
 			pthread_mutex_unlock(&xylo->stats->mutex);
 		}
 	}
 }
 
-void	*adagio_check(void *args)
+void	*finitto(void *args)
 {
 	t_xylo	*xylo;
 

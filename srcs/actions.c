@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:18:06 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/18 15:19:32 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:47:24 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	print_status(t_xylo *xylo, char *str)
 	{
 		pthread_mutex_lock(&xylo->stats->mutex);
 		if (xylo->stats->vibing != 0)
-			printf("Ms: %ld Xylo [%d] %s\n", updated_time() - xylo->stats->tempo, xylo->num, str);
+			printf("Ms: %ld Xylo [%d] %s\n",
+				updated_time() - xylo->stats->tempo, xylo->num, str);
 		pthread_mutex_unlock(&xylo->stats->mutex);
 	}
 	return (0);
@@ -26,16 +27,16 @@ int	print_status(t_xylo *xylo, char *str)
 
 void	ft_playing(t_xylo *xylo)
 {
-	pthread_mutex_lock(&xylo->stats->mallet[xylo->left]);
+	pthread_mutex_lock(&xylo->mallet);
 	print_status(xylo, "has taken the left mallet...\n");
-	pthread_mutex_lock(&xylo->stats->mallet[xylo->next->left]);
+	pthread_mutex_lock(&xylo->next->mallet);
 	print_status(xylo, "has taken the right mallet...\n");
 	print_status(xylo, "is playing...\n");
 	xylo->last_play = updated_time() - xylo->stats->tempo;
 	ft_must_play(xylo);
 	overclocked_usleep(xylo->stats->ttp);
-	pthread_mutex_unlock(&xylo->stats->mallet[xylo->left]);
-	pthread_mutex_unlock(&xylo->stats->mallet[xylo->next->left]);
+	pthread_mutex_unlock(&xylo->mallet);
+	pthread_mutex_unlock(&xylo->next->mallet);
 }
 
 void	ft_must_play(t_xylo *xylo)

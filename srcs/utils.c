@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:48:04 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/12 10:47:53 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:46:31 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_xylo	*ft_lstnew(int num)
 	if (!new)
 		return (NULL);
 	new->num = num;
-	new->mallet = 0;
+	pthread_mutex_init(&new->mallet, NULL);
 	new->plays = 0;
 	new->broke = 0;
 	new->last_play = 0;
@@ -90,6 +90,7 @@ void	ft_round_list(t_xylo **xylo, t_stats *data)
 	{
 		new = ft_lstnew(i);
 		ft_lstadd_back(xylo, new);
+		new->stats = data;
 		i++;
 	}
 	ft_lstlast(*xylo)->next = *xylo;

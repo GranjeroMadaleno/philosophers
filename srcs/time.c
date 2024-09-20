@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 12:05:46 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/11 12:15:55 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:14:42 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ long	updated_time(void)
 
 void	overclocked_usleep(unsigned int ms)
 {
-	long	time_start;
+	long	start_time;
 
-	time_start = updated_time();
-	while (updated_time() - time_start < ms)
-		usleep(10);
+	start_time = updated_time();
+	while (updated_time() - start_time < ms)
+		usleep(100);
 }

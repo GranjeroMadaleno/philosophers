@@ -3,7 +3,7 @@ NAME = xylophoners
 
 # COMPILATON FLAGS
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 RM = /bin/rm -rf
 
 # INCLUDE
