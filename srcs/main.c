@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:02:04 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/20 13:50:24 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:00:04 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	*routine(void *args)
 	while (xylo->stats->vibing != 0)
 	{
 		if (xylo->stats->played < xylo->stats->num)
+		{
 			ft_playing(xylo);
+		}
 		ft_studying(xylo);
 		ft_breaktime(xylo);
 	}
@@ -71,7 +73,6 @@ int	argv_checker(int argc, char **argv, t_stats *stats, t_xylo *xylo)
 	(void)xylo;
 	if (argc == 5 || argc == 6)
 		initializer(stats, argv);
-	//print_matic(stats, xylo);
 	else
 		return (1);
 	return (0);
@@ -83,6 +84,7 @@ int	main(int argc, char**argv)
 	t_xylo	*xylo;
 
 	xylo = NULL;
+	my_time(SET);
 	argv_checker(argc, argv, &stats, xylo);
 	ft_round_list(&xylo, &stats);
 	sewing_kit(&stats, &xylo);

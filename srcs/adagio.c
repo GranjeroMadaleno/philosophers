@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:32:28 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/20 13:40:11 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:53:44 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	adagio(t_xylo *xylo)
 {
-	if (((updated_time() - xylo->stats->tempo) - xylo->last_play) >= xylo->stats->ttb)
+	if ((my_time(GET) - xylo->last_play) >= xylo->stats->ttb)
 	{
 		if (xylo->stats->vibing != 0)
 		{
 			xylo->stats->broken = 1;
 			xylo->stats->vibing = 0;
 			pthread_mutex_lock(&xylo->stats->mutex);
-			printf("Ms: %ld Xylo [%d] Broken\n", updated_time() - xylo->stats->tempo,
-				xylo->num);
+			printf("Ms: %ld Xylo [%d] Broken\n", my_time(GET), xylo->num);
 			pthread_mutex_unlock(&xylo->stats->mutex);
 		}
 	}

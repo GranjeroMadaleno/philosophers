@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:18:06 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/20 13:47:24 by andefern         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:55:44 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	print_status(t_xylo *xylo, char *str)
 	{
 		pthread_mutex_lock(&xylo->stats->mutex);
 		if (xylo->stats->vibing != 0)
-			printf("Ms: %ld Xylo [%d] %s\n",
-				updated_time() - xylo->stats->tempo, xylo->num, str);
+			printf("Ms: %ld Xylo [%d] %s\n", my_time(GET), xylo->num, str);
 		pthread_mutex_unlock(&xylo->stats->mutex);
 	}
 	return (0);
@@ -32,7 +31,7 @@ void	ft_playing(t_xylo *xylo)
 	pthread_mutex_lock(&xylo->next->mallet);
 	print_status(xylo, "has taken the right mallet...\n");
 	print_status(xylo, "is playing...\n");
-	xylo->last_play = updated_time() - xylo->stats->tempo;
+	xylo->last_play = my_time(GET);
 	ft_must_play(xylo);
 	overclocked_usleep(xylo->stats->ttp);
 	pthread_mutex_unlock(&xylo->mallet);
