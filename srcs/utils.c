@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 13:48:04 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/20 13:46:31 by andefern         ###   ########.fr       */
+/*   Created: 2024/10/01 10:48:08 by andefern          #+#    #+#             */
+/*   Updated: 2024/10/07 10:30:26 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xylophoners.h"
+#include "philo.h"
 
 int	ft_atoi(const char *str)
 {
@@ -37,61 +37,54 @@ int	ft_atoi(const char *str)
 	}
 	return (n * j);
 }
+/*
 
-t_xylo	*ft_lstlast(t_xylo *lst)
+t_philo	*ft_lstnew(int dni)
 {
-	if (!lst)
+	t_philo	*node;
+
+	node = malloc(sizeof(t_philo));
+	if (node == NULL)
 		return (NULL);
+	node->dni = dni;
+	node->next = NULL;
+	return (node);
+}
+
+t_philo	*ft_lstlast(t_philo *lst)
+{
 	while (lst->next)
+	{
+		if (lst->next == NULL)
+			return (lst);
 		lst = lst->next;
+	}
 	return (lst);
 }
 
-void	ft_lstadd_back(t_xylo **lst, t_xylo *new)
+void	ft_lstadd_back(t_philo **lst, t_philo *new)
 {
-	t_xylo	*last;
+	t_philo	*final;
 
-	if (!lst || !new)
-		return ;
-	if (*lst == NULL)
-	{
+	if (!(*lst))
 		*lst = new;
-	}
 	else
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
+		final = ft_lstlast(*lst);
+		final->next = new;
 	}
 }
 
-t_xylo	*ft_lstnew(int num)
+void	ft_create_list(t_philo **philo, t_stats *stats)
 {
-	t_xylo	*new;
-
-	new = (t_xylo *)malloc(sizeof(t_xylo));
-	if (!new)
-		return (NULL);
-	new->num = num;
-	pthread_mutex_init(&new->mallet, NULL);
-	new->plays = 0;
-	new->broke = 0;
-	new->last_play = 0;
-	new->next = NULL;
-	return (new);
-}
-
-void	ft_round_list(t_xylo **xylo, t_stats *data)
-{
-	t_xylo	*new;
 	int		i;
 
 	i = 0;
-	while (i < data->num)
+	while (i <= stats->p_num)
 	{
-		new = ft_lstnew(i);
-		ft_lstadd_back(xylo, new);
-		new->stats = data;
+		ft_lstadd_back(philo, ft_lstnew(i));
 		i++;
 	}
-	ft_lstlast(*xylo)->next = *xylo;
+	ft_lstlast(*philo)->next = *philo;
 }
+*/

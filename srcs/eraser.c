@@ -5,22 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 11:08:34 by andefern          #+#    #+#             */
-/*   Updated: 2024/09/20 13:40:49 by andefern         ###   ########.fr       */
+/*   Created: 2024/10/04 10:56:20 by andefern          #+#    #+#             */
+/*   Updated: 2024/10/14 11:55:37 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xylophoners.h"
+#include "philo.h"
 
-void	eraser(t_xylo *xylo, t_stats *stats)
+void	eraser(t_philo *philo, t_stats *stats)
 {
-	t_xylo	*mem;
+	t_philo	*mem;
 
-	while (stats->num)
+	while (stats->p_num > 0)
 	{
-		mem = xylo;
-		xylo = xylo->next;
+		mem = philo;
+		philo = philo->next;
+		pthread_mutex_destroy(&mem->fork);
 		free(mem);
-		stats->num--;
+		stats->p_num--;
 	}
+	pthread_mutex_destroy(&stats->print);
+	free(stats);
 }

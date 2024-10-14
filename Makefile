@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: andefern <andefern@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/01 10:43:41 by andefern          #+#    #+#              #
+#    Updated: 2024/10/10 11:53:11 by andefern         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # PROGAM NAME
-NAME = xylophoners
+NAME = philo
 
 # COMPILATON FLAGS
 CC = gcc
@@ -7,17 +19,15 @@ CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 RM = /bin/rm -rf
 
 # INCLUDE
-INCLUDE = xylophoners.h
+INCLUDE = philo.h
 
 # FILES TO COMPILE
 SRCS =	srcs/actions.c		\
-		srcs/adagio.c		\
 		srcs/eraser.c		\
-		srcs/initializer.c	\
 		srcs/main.c			\
+		srcs/parse.c		\
 		srcs/time.c			\
 		srcs/utils.c
-
 
 #OBJECTS (*.o)
 OBJS = $(SRCS:.c=.o)
@@ -35,19 +45,19 @@ PAPYRUS=\033[38;5;223m
 END=\033[0m
 
 # MAKEFILE ART #
-define XYLOPHONERS
-$(GREEN)
+define PHILOSOPHERS
+$(YELLOW)
 
-██   ██ ██    ██ ██       ██████  ██████  ██   ██  ██████  ███    ██ ███████ ██████  ███████ 
- ██ ██   ██  ██  ██      ██    ██ ██   ██ ██   ██ ██    ██ ████   ██ ██      ██   ██ ██      
-  ███     ████   ██      ██    ██ ██████  ███████ ██    ██ ██ ██  ██ █████   ██████  ███████ 
- ██ ██     ██    ██      ██    ██ ██      ██   ██ ██    ██ ██  ██ ██ ██      ██   ██      ██ 
-██   ██    ██    ███████  ██████  ██      ██   ██  ██████  ██   ████ ███████ ██   ██ ███████ 
-                                                                                             
-                                                                                             
+██████╗ ██╗  ██╗██╗██╗      ██████╗ ███████╗ ██████╗ ██████╗ ██╗  ██╗███████╗██████╗ ███████╗
+██╔══██╗██║  ██║██║██║     ██╔═══██╗██╔════╝██╔═══██╗██╔══██╗██║  ██║██╔════╝██╔══██╗██╔════╝
+██████╔╝███████║██║██║     ██║   ██║███████╗██║   ██║██████╔╝███████║█████╗  ██████╔╝███████╗
+██╔═══╝ ██╔══██║██║██║     ██║   ██║╚════██║██║   ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗╚════██║
+██║     ██║  ██║██║███████╗╚██████╔╝███████║╚██████╔╝██║     ██║  ██║███████╗██║  ██║███████║
+╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
+                                                                                                                                                                                                                                                                                  
 $(END)
 endef
-export XYLOPHONERS
+export PHILOSOPHERS
 
 #RULES
 # .SILENT:
@@ -61,7 +71,7 @@ $(NAME): $(OBJS)
 #	mv srcs/libft/libft.a .
 #	-L./srcs/libft -lft
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	echo "$$XYLOPHONERS"
+	echo "$$PHILOSOPHERS"
 
 sanitize:
 	$(eval CFLAGS+=-fsanitize=address -g3)
@@ -80,4 +90,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re sani sanitize sunny
+lele: fclean all
+
+.PHONY: all clean fclean re sani sanitize sunny lele
