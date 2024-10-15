@@ -6,11 +6,44 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:48:08 by andefern          #+#    #+#             */
-/*   Updated: 2024/10/07 10:30:26 by andefern         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:57:36 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	bruce_s_printstring(t_philo *philo, char *str)
+{
+	if (philo->stats->end == false)
+	{
+		pthread_mutex_lock(&philo->stats->print);
+		printf("%lu %d %s\n",
+			(ft_time() - philo->stats->start), philo->dni, str);
+		pthread_mutex_unlock(&philo->stats->print);
+	}
+}
+
+bool	argv_checker(int argc, char **argv)
+{
+	int	j;
+	int	k;
+
+	if (argc != 5 && argc != 6)
+		return (true);
+	j = 1;
+	while (argv[j] != NULL)
+	{
+		k = 0;
+		while (argv[j][k] != '\0')
+		{
+			if (!(argv[j][k] >= '0' && argv[j][k] <= '9'))
+				return (true);
+			k++;
+		}
+		j++;
+	}
+	return (false);
+}
 
 int	ft_atoi(const char *str)
 {

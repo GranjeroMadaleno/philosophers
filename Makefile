@@ -6,7 +6,7 @@
 #    By: andefern <andefern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 10:43:41 by andefern          #+#    #+#              #
-#    Updated: 2024/10/10 11:53:11 by andefern         ###   ########.fr        #
+#    Updated: 2024/10/14 13:51:13 by andefern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 
 # COMPILATON FLAGS
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -I includes #-fsanitize=address
 RM = /bin/rm -rf
 
 # INCLUDE
@@ -62,8 +62,8 @@ export PHILOSOPHERS
 #RULES
 # .SILENT:
 
-.c.o: $(SRCS)
-	$(CC) -I includes $(CFLAGS) -c $< -o $@ 
+.o:.c $(SRCS)
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 all: $(NAME)
 

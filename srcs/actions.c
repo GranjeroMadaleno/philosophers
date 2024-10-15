@@ -6,46 +6,59 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:49:13 by andefern          #+#    #+#             */
-/*   Updated: 2024/10/14 11:45:44 by andefern         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:43:39 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	bruce_s_printstring(t_philo *janfri, char *str)
+void	case_one(t_stats *stats)
 {
-	if (janfri->stats->end == false)
-	{
-		pthread_mutex_lock(&janfri->stats->print);
-		printf("[%lu]: Philo id: [%d]: %s\n",
-			(ft_time() - janfri->stats->start), janfri->dni, str);
-		pthread_mutex_unlock(&janfri->stats->print);
-	}
+	printf("0 1 has taken a fork\n");
+	ft_usleep(stats->ttd);
+	printf("%d 1 died\n", stats->ttd);
+	free(stats);
+	exit(0);
 }
 
-void	zinkin(t_philo *janfri)
+void	thinking(t_philo *philo)
 {
-	bruce_s_printstring(janfri, "eeemmmm");
+	bruce_s_printstring(philo, "is thinking");
 }
 
-void	zzz(t_philo *janfri)
+void	zzz(t_philo *philo)
 {
-	bruce_s_printstring(janfri, "E eepy");
-	ft_usleep(janfri->stats->tts);
+	bruce_s_printstring(philo, "is sleeping");
+	ft_usleep(philo->stats->tts);
 }
 
 void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->fork);
-	bruce_s_printstring(philo, "\033[94mHa pillau mi fork\033[0m");
+	bruce_s_printstring(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->next->fork);
-	bruce_s_printstring(philo, "\033[94mHa pillau el otro\033[0m");
+	bruce_s_printstring(philo, "has taken a fork");
 	philo->start_eating = ft_time();
-	bruce_s_printstring(philo, "\033[91mA comeh\033[0m");
+	bruce_s_printstring(philo, "is eating");
 	ft_usleep(philo->stats->tte);
 	philo->eaten_times++;
 	pthread_mutex_unlock(&philo->fork);
-	bruce_s_printstring(philo, "\033[95mSuelta mi fork\033[0m");
 	pthread_mutex_unlock(&philo->next->fork);
-	bruce_s_printstring(philo, "\033[95mSuelta el otro\033[0m");
+}
+
+bool	eaten_bool(t_philo *philo)
+{
+	int	p_num;
+
+	p_num = philo->stats->p_num;
+	while (p_num--)
+	{
+		if (philo->stats->just_eat == false)
+			return (0);
+		if (philo->stats->just_eat == true
+			&& (philo->eaten_times < philo->stats->must_eat))
+			return (0);
+		philo = philo->next;
+	}
+	return (1);
 }

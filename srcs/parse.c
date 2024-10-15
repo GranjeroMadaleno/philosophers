@@ -6,7 +6,7 @@
 /*   By: andefern <andefern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:06:37 by andefern          #+#    #+#             */
-/*   Updated: 2024/10/14 12:19:03 by andefern         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:42:53 by andefern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,35 +55,21 @@ t_philo	*philo_initializer(t_stats *stats, int dni)
 t_philo	*philo_list(t_stats *stats)
 {
 	int		dni;
-	t_philo	*janfri;
-	t_philo	*morris;
+	t_philo	*head;
+	t_philo	*philo;
 
-	dni = 0;
-	janfri = philo_initializer(stats, dni);
+	dni = 1;
+	head = philo_initializer(stats, dni);
 	dni++;
-	morris = philo_initializer(stats, dni);
+	philo = philo_initializer(stats, dni);
 	dni++;
-	janfri->next = morris;
-	while (stats->p_num > dni)
+	head->next = philo;
+	while (stats->p_num >= dni)
 	{
-		morris->next = philo_initializer(stats, dni);
-		morris->tenedoh = dni;
-		morris = morris->next;
+		philo->next = philo_initializer(stats, dni);
+		philo = philo->next;
 		dni++;
 	}
-	morris->next = janfri;
-	return (janfri);
-}
-
-t_philo	*argv_checker(int argc, t_stats *stats)
-{
-	t_philo	*janfri;
-
-	if (argc == 5 || argc == 6)
-	{
-		janfri = philo_list(stats);
-		return (janfri);
-	}
-	else
-		return (NULL);
+	philo->next = head;
+	return (head);
 }
